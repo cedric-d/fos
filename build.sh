@@ -112,8 +112,8 @@ while getopts "$optspec" o; do
 done
 brURL="https://buildroot.org/downloads/buildroot-$BUILDROOT_VERSION.tar.bz2"
 kernelURL="https://www.kernel.org/pub/linux/kernel/v4.x/linux-$KERNEL_VERSION.tar.xz"
-debDeps="git build-essential rsync libncurses5-dev bison flex gcc-arm-linux-gnueabi gcc-aarch64-linux-gnu"
-rhelDeps="git rsync ncurses-devel bison flex gcc-arm-linux-gnu gcc-aarch64-linux-gnu"
+debDeps="git build-essential rsync libncurses5-dev bison flex gcc-arm-linux-gnueabi gcc-aarch64-linux-gnu libelf-dev"
+rhelDeps="git rsync ncurses-devel bison flex gcc-arm-linux-gnu gcc-aarch64-linux-gnu elfutils-libelf-devel"
 [[ -z $arch ]] && arch="x64 x86 arm arm64"
 [[ -z $buildPath ]] && buildPath=$(dirname $(readlink -f $0))
 [[ -z $confirm ]] && confirm="y"
