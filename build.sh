@@ -112,8 +112,8 @@ while getopts "$optspec" o; do
 done
 brURL="https://buildroot.org/downloads/buildroot-$BUILDROOT_VERSION.tar.bz2"
 kernelURL="https://www.kernel.org/pub/linux/kernel/v4.x/linux-$KERNEL_VERSION.tar.xz"
-debDeps="git meld build-essential rsync libncurses5-dev bison flex gcc-arm-linux-gnueabi gcc-aarch64-linux-gnu"
-rhelDeps="git meld rsync ncurses-devel bison flex gcc-arm-linux-gnu gcc-aarch64-linux-gnu"
+debDeps="git build-essential rsync libncurses5-dev bison flex gcc-arm-linux-gnueabi gcc-aarch64-linux-gnu libelf-dev"
+rhelDeps="git rsync ncurses-devel bison flex gcc-arm-linux-gnu gcc-aarch64-linux-gnu elfutils-libelf-devel"
 [[ -z $arch ]] && arch="x64 x86 arm arm64"
 [[ -z $buildPath ]] && buildPath=$(dirname $(readlink -f $0))
 [[ -z $confirm ]] && confirm="y"
@@ -318,7 +318,7 @@ function buildKernel() {
         echo "Done"
     else
         echo " * Did not find a patch file matching the exact kernel version $KERNEL_VERSION."
-	latest=$(ls -1r ../patch/kernel/linux*.patch | head -1)
+	latest=$(ls -1rv ../patch/kernel/linux*.patch | head -1)
 	dots "Trying to apply $latest"
 	patch -p1 < $latest
 	echo "Done"
